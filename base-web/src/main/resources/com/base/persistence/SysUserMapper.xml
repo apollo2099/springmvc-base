@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="com.base.persistence.SysUserMapper">
+	<resultMap id="rm" type="com.base.web.user.persistence.beans.SysUser">
+		<result property="id" jdbcType="INTEGER" column="ID"/>
+		<result property="userName" jdbcType="VARCHAR" column="userName"/>
+		<result property="userAge" jdbcType="VARCHAR" column="userAge"/>
+		<result property="userAddress" jdbcType="VARCHAR" column="userAddress"/>
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID,
+		userName,
+		userAge,
+		userAddress
+	</sql>
+	<select id="load" parameterType="java.lang.Integer" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM user 
+		WHERE 
+			ID = #{id} 
+	</select>
+	<!-- 查询所有的ID -->
+	<select id="findAllIds" resultType="java.lang.Integer">
+		SELECT ID FROM user
+	</select>
+
+	<!-- 按Id删除 -->
+	<delete id="delete" parameterType="java.lang.Integer">
+		DELETE FROM user WHERE
+		ID = #{id} 
+	</delete>
+	 <!-- 插入 -->
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO sys_user (
+			ID,
+			GENDER,
+			USERNAME,
+			PASSWORD,
+			VERIFY,
+			NICKNAME,
+			FIRST_NAME,
+			LAST_NAME,
+			EMAIL,
+			PHONE,
+			STATUS,
+			BIRTH_DATE,
+			INSERT_DATE,
+			UPDATE_DATE
+		) VALUES (
+			#{id},
+			#{gender},
+			#{username},
+			#{password},
+			#{verify},
+			#{nickname},
+			#{firstName},
+			#{lastName},
+			#{email},
+			#{phone},
+			#{status},
+			#{birthDate},
+			#{insertDate},
+			#{updateDate}
+		)
+	</insert>
+	
+	<select id="countAll" resultType="java.lang.Integer">
+		SELECT count(ID) FROM user	
+	</select>
+	
+	<select id="findAll" resultMap="rm">
+		SELECT 
+			<include refid="Base_Column_List" />
+		FROM sys_user
+	</select>
+	
+	<!-- 更新 -->
+	<update id="updateSelective" parameterType="com.base.web.user.persistence.beans.SysUser">
+		UPDATE user 
+			<set>
+				<if test="gender!=null">
+				GENDER = #{gender},
+				</if>
+				<if test="username!=null">
+				USERNAME = #{username},
+				</if>
+				<if test="password!=null">
+				PASSWORD = #{password},
+				</if>
+				<if test="verify!=null">
+				VERIFY = #{verify},
+				</if>
+				<if test="nickname!=null">
+				NICKNAME = #{nickname},
+				</if>
+				<if test="firstName!=null">
+				FIRST_NAME = #{firstName},
+				</if>
+				<if test="lastName!=null">
+				LAST_NAME = #{lastName},
+				</if>
+				<if test="email!=null">
+				EMAIL = #{email},
+				</if>
+				<if test="phone!=null">
+				PHONE = #{phone},
+				</if>
+				<if test="status!=null">
+				STATUS = #{status},
+				</if>
+				<if test="birthDate!=null">
+				BIRTH_DATE = #{birthDate},
+				</if>
+				<if test="insertDate!=null">
+				INSERT_DATE = #{insertDate},
+				</if>
+				<if test="updateDate!=null">
+				UPDATE_DATE = #{updateDate}
+				</if>
+			</set>
+		WHERE 
+			ID = #{id}
+	</update>
+	
+	<update id="update" parameterType="com.base.web.user.persistence.beans.SysUser">
+		UPDATE sys_user SET
+			GENDER = #{gender},
+			USERNAME = #{username},
+			PASSWORD = #{password},
+			VERIFY = #{verify},
+			NICKNAME = #{nickname},
+			FIRST_NAME = #{firstName},
+			LAST_NAME = #{lastName},
+			EMAIL = #{email},
+			PHONE = #{phone},
+			STATUS = #{status},
+			BIRTH_DATE = #{birthDate},
+			INSERT_DATE = #{insertDate},
+			UPDATE_DATE = #{updateDate}
+		WHERE 
+			ID = #{id} 
+	</update>
+	
+	
+	<update id="updateStatus" parameterType="map">
+		UPDATE sys_user SET
+			STATUS = #{status},
+			UPDATE_DATE = #{updateDate}
+		WHERE 
+			ID = #{id} 
+	</update>
+	
+	<select id="findByUsername" parameterType="java.lang.String"
+		resultMap="rm">
+		select 
+			<include refid="Base_Column_List" />
+		from user where userName = #{username} 
+	</select>
+	<select id="findByVerifyCode" parameterType="java.lang.String"
+		resultMap="rm">
+		select 
+			<include refid="Base_Column_List" />
+		from user where VERIFY = #{verify} and STATUS!='DELETED'
+	</select>
+	
+	<select id="isUniqueUsername" parameterType="map" resultType="java.lang.Integer">
+		select count(0) as c
+		from user where ID != #{id} and USERNAME = #{username} and STATUS!='DELETED'
+	</select>
+	
+	<select id="findPageBreakByCondition" resultMap="rm" parameterType="map">
+		SELECT 
+	        <include refid="Base_Column_List" />
+		from user 
+
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			username != 'admin'
+			<choose>
+			<when test="status != null">
+				 AND STATUS=#{status}  
+			</when>
+			<otherwise>
+				 AND STATUS!='DELETED'
+			</otherwise>
+			</choose>
+			<if test="startDate != null">
+				 AND INSERT_DATE &gt;= #{startDate} 
+			</if>
+			<if test="endDate != null">
+				 AND INSERT_DATE &lt;= #{endDate} 
+			</if>
+			<if test="keywords != null">
+				AND (
+					USERNAME LIKE "%"#{keywords}"%"
+					or NICKNAME LIKE "%"#{keywords}"%"
+					or FIRST_NAME LIKE "%"#{keywords}"%"
+					or LAST_NAME LIKE "%"#{keywords}"%"
+					or EMAIL LIKE "%"#{keywords}"%"
+					or PHONE LIKE "%"#{keywords}"%"
+				)
+      		</if>
+      	</trim>
+
+		<choose>
+			<when test="orderField !=null and orderField !=''">
+				 ORDER BY ${orderField} <if test="orderDirection != null and orderDirection != ''">${orderDirection}</if>
+			</when>
+			<otherwise>
+				 order by INSERT_DATE DESC
+			</otherwise>
+		</choose>
+      	 
+	</select>
+	<select id="findNumberByCondition" resultType="java.lang.Integer" parameterType="map">
+		select count(0) as c from user
+
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<choose>
+			<when test="status != null">
+				 AND STATUS=#{status}  
+			</when>
+			<otherwise>
+				 AND STATUS!='DELETED'
+			</otherwise>
+			</choose>
+			
+			<if test="startDate != null">
+				 AND INSERT_DATE &gt;= #{startDate} 
+			</if>
+			<if test="endDate != null">
+				 AND INSERT_DATE &lt;= #{endDate} 
+			</if>
+			<if test="keywords != null">
+				AND (
+					USERNAME LIKE "%"#{keywords}"%"
+					or NICKNAME LIKE "%"#{keywords}"%"
+					or FIRST_NAME LIKE "%"#{keywords}"%"
+					or LAST_NAME LIKE "%"#{keywords}"%"
+					or EMAIL LIKE "%"#{keywords}"%"
+					or PHONE LIKE "%"#{keywords}"%"
+				)
+      		</if>
+      	</trim>
+
+	</select>
+</mapper>
+
