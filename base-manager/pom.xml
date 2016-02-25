@@ -20,6 +20,13 @@
 			<artifactId>base-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+		
+        <!-- 添加系统配置包 -->
+		<dependency>
+			<groupId>com.ibase</groupId>
+			<artifactId>base-system</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
   </dependencies>
   
   	<!-- 编译打包 -->

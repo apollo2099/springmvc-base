@@ -1,4 +1,4 @@
-package com.base.web.user;
+package com.base.modules.sys.user.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,23 +6,19 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.base.common.dao.BaseDAO;
-import com.base.web.user.persistence.beans.SysUser;
 
 
 @Service("userService")
 public class UserService {
-	private static final String sqlMap ="SysUserMapper.";
+
+	private static final String sqlMap ="UserMapper.";
 	@Autowired
 	private BaseDAO baseDAO;
-	/**
-	 * ��ѯ�����б�
-	 * @return
-	 */
-	public SysUser findByUsername(String username){
+	
+	public Map findByUsername(String username){
 		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
-		SysUser user=(SysUser) baseDAO.select(sqlMap+"findByUsername",username);
-		return user;
+		Map mp = (Map)  baseDAO.select(sqlMap+"findByUsername",username);
+		return mp;
 	}
 }
