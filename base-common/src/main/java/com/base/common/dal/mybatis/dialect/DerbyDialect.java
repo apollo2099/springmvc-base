@@ -1,6 +1,6 @@
-package com.base.dal.mybatis.dialect;
+package com.base.common.dal.mybatis.dialect;
 
-public class SybaseDialect extends Dialect{
+public class DerbyDialect extends Dialect{
 
 	public boolean supportsLimit() {
 		return false;

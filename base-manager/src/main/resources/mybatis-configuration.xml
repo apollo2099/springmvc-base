@@ -4,8 +4,8 @@
 <configuration>
 
 	<plugins>
-		<plugin interceptor="com.base.dal.mybatis.plugin.OffsetLimitInterceptor">
-			<property name="dialectClass" value="com.base.dal.mybatis.dialect.MySQLDialect"/>
+		<plugin interceptor="com.base.common.dal.mybatis.plugin.OffsetLimitInterceptor">
+			<property name="dialectClass" value="com.base.common.dal.mybatis.dialect.MySQLDialect"/>
 		</plugin>
 	</plugins>
 	 

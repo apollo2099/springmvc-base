@@ -1,4 +1,4 @@
-package com.base.dal.mybatis.dialect;
+package com.base.common.dal.mybatis.dialect;
 
 /**
  *

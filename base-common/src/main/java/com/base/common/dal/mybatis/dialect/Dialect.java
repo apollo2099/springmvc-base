@@ -1,4 +1,4 @@
-package com.base.dal.mybatis.dialect;
+package com.base.common.dal.mybatis.dialect;
 /**
  * 类似hibernate的Dialect,但只精简出分页部分
  * @author badqiu

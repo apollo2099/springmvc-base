@@ -17,7 +17,7 @@ public class UserService {
 	@Autowired
 	private BaseDAO baseDAO;
 	/**
-	 * ╡Ия╞пбнеап╠М
+	 * О©╫О©╫я╞О©╫О©╫О©╫О©╫О©╫п╠О©╫
 	 * @return
 	 */
 	public SysUser findByUsername(String username){

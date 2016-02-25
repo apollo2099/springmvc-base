@@ -1,4 +1,4 @@
-package com.base.dal.mybatis.plugin;
+package com.base.common.dal.mybatis.plugin;
 
 import java.util.Properties;
 
@@ -15,8 +15,8 @@ import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 
-import com.base.common.util.PropertiesHelper;
-import com.base.dal.mybatis.dialect.Dialect;
+import com.base.common.dal.mybatis.dialect.Dialect;
+import com.base.common.utils.PropertiesHelper;
 
 /**
  * <strong>Title : OffsetLimitInterceptor<br></strong>

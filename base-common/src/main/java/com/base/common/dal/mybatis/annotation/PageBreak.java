@@ -1,4 +1,4 @@
-package com.base.dal.mybatis.annotation;
+package com.base.common.dal.mybatis.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

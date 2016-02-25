@@ -1,4 +1,4 @@
-package com.base.dal.mybatis;
+package com.base.common.dal.mybatis;
 
 import org.apache.ibatis.session.RowBounds;
 
