@@ -10,7 +10,7 @@
 		userAddress
 	</sql>
     
-     <select id="findByUsername" parameterType="java.lang.String" resultMap="java.util.HashMap">
+     <select id="findByUsername"  parameterType="java.lang.String"  resultType="java.util.Map">
 		select 
 		<include refid="Base_Column_List" />
 		from user where userName = #{username} 
