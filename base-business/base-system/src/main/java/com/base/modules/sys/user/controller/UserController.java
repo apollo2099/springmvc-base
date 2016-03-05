@@ -21,5 +21,13 @@ public class UserController {
 		 System.out.println(map.get("userName"));
 		return "/login";
 	}
+	
+	@RequestMapping("/list")
+	public String list() {
+//		String username="admin";
+//		 Map map=userService.findByUsername(username);
+//		 System.out.println(map.get("userName"));
+		return "/user/list";
+	}
     
 }
