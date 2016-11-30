@@ -1,5 +1,7 @@
 package com.base.cache.redis;
 
+import redis.clients.jedis.JedisPool;
+
 /**
  * 内部接口,不要使用
  *

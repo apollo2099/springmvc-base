@@ -1,5 +1,8 @@
 package com.base.cache.redis.service;
 
+import java.util.List;
+import java.util.Set;
+
 /**
  * Redis服务接口
  * @author huixiong

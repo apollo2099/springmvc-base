@@ -1,12 +1,22 @@
 package com.base.cache.redis.service;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.exceptions.JedisDataException;
+
+import com.base.cache.redis.DefaultJedisFactory;
+import com.base.cache.redis.RedisFactory;
+import com.base.cache.redis.ServiceErrorCode;
+import com.base.cache.redis.exception.RedisServiceException;
+
 /**
  * Redis 接口操作工具类
  */
 public class RedisServiceImpl implements RedisService{
     private RedisFactory<Jedis>	redisFactory;
-
-    private TraceTransfer tracer;
 
     private String host;
 
@@ -18,8 +28,6 @@ public class RedisServiceImpl implements RedisService{
 
     public RedisServiceImpl(RedisFactory<Jedis> redisFactory) {
         this.redisFactory = redisFactory;
-        tracer = TraceTransfer.getTracer();
-
         //监控增加
         host = redisFactory.getHost();
         port = redisFactory.getPort();
@@ -68,7 +76,7 @@ public class RedisServiceImpl implements RedisService{
                 sb.append(content);
             } catch (Throwable e) {
                 broken = handleException(e);
-                throw new RedisServiceException("Redis execute exception, " + e.getMessage(), ServiceErrorCode.REDIS_EXECUTE_FAIL_ERROR);
+                //throw new RedisServiceException("Redis execute exception, " + e.getMessage(), ServiceErrorCode.REDIS_EXECUTE_FAIL_ERROR);
             } finally {
                 if (jedis != null) {
                     redisFactory.returnResource(jedis);
@@ -546,8 +554,6 @@ public class RedisServiceImpl implements RedisService{
             int numIdle = redisFactory.getPool().getNumIdle();
             tempContent = tempContent+", numActive="+numActive+", numIdle="+numIdle;
         }
-        TraceAnnotation annotation = new TraceAnnotation(duration,TracerUtils.ANNOTATION_TYPE_REDIS,tempContent,System.currentTimeMillis());
-        tracer.addAnnotation(annotation);
     }
 
     @Override

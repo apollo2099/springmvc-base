@@ -5,7 +5,7 @@ import com.base.cache.redis.service.RedisService;
 /**
  * Created by Administrator on 2016/11/25.
  */
-public class IRedisServiceFactory {
+public interface IRedisServiceFactory {
 
     RedisService getRedisService();
 

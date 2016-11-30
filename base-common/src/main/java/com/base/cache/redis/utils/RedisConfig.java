@@ -9,4 +9,8 @@ public class RedisConfig {
 
         return null;
     }
+    
+    public static int getConfig(String config,int configValue){
+    	return configValue;
+    }
 }

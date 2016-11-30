@@ -20,13 +20,7 @@ public class JSONUtils {
 	 * @return
 	 */
 	public  static String jsonToString(Object object){
-		return JSONObject.toJson(object);
-
-	}
-
-
-	public static Object jsonTo(){
-		JSONObject.parse();
+		return JSONObject.toJSONString(object);
 	}
 
 	/**
