@@ -9,7 +9,6 @@ import redis.clients.jedis.exceptions.JedisDataException;
 
 import com.base.cache.redis.DefaultJedisFactory;
 import com.base.cache.redis.RedisFactory;
-import com.base.cache.redis.ServiceErrorCode;
 import com.base.cache.redis.exception.RedisServiceException;
 
 /**

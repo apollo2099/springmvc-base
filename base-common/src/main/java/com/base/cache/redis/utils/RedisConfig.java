@@ -1,16 +1,35 @@
 package com.base.cache.redis.utils;
 
+import com.base.utils.ObjectUtils;
+import org.apache.commons.lang.StringUtils;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
 /**
- * Created by Administrator on 2016/11/25.
+ * 读取redis配置文件信息
  */
 public class RedisConfig {
 
-    public static String getConfig(String config){
+    private volatile static Map<String, String> defaultConfigs = new ConcurrentHashMap<String, String>();
 
-        return null;
+    public void initConfig(){
+
+        defaultConfigs.put("","");
+
     }
-    
-    public static int getConfig(String config,int configValue){
-    	return configValue;
+
+    public static String getConfig(String key, String defaultValue) {
+        String value = defaultConfigs.get(key);
+        return ObjectUtils.isEmpty(value) ? defaultValue : value;
+    }
+
+    public static String getConfig(String key) {
+        return getConfig(key, null);
+    }
+
+    public static int getConfig(String key, int defaultValue) {
+        String value = getConfig(key);
+        return StringUtils.isBlank(value) ? defaultValue : Integer.parseInt(value);
     }
 }
