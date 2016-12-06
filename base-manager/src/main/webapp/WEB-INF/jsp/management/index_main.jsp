@@ -17,10 +17,10 @@
     <![endif]-->
 
     <link rel="shortcut icon" href="favicon.ico">
-    <link href="/hplus/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
-    <link href="/hplus/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <link href="/hplus/css/animate.min.css" rel="stylesheet">
-    <link href="/hplus/css/style.min.css?v=4.0.0" rel="stylesheet">
+    <link href="/base-manager/hplus/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+    <link href="/base-manager/hplus/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="/base-manager/hplus/css/animate.min.css" rel="stylesheet">
+    <link href="/base-manager/hplus/css/style.min.css?v=4.0.0" rel="stylesheet">
 </head>
 
 <body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
@@ -33,7 +33,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <span><img alt="image" class="img-circle" src="img/profile_small.jpg" /></span>
+                            <span><img alt="image" class="img-circle" src="/base-manager/hplus/img/profile_small.jpg" /></span>
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="clear">
                                <span class="block m-t-xs"><strong class="font-bold">Beaut-zihan</strong></span>
@@ -918,14 +918,14 @@
             </a>
         </div>
     </div>
-    <script src="/hplus/js/jquery.min.js?v=2.1.4"></script>
-    <script src="/hplus/js/bootstrap.min.js?v=3.3.5"></script>
-    <script src="/hplus/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="/hplus/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-    <script src="/hplus/js/plugins/layer/layer.min.js"></script>
-    <script src="/hplus/js/hplus.min.js?v=4.0.0"></script>
-    <script type="text/javascript" src="/hplus/js/contabs.min.js"></script>
-    <script src="/hplus/js/plugins/pace/pace.min.js"></script>
+    <script src="/base-manager/hplus/js/jquery.min.js?v=2.1.4"></script>
+    <script src="/base-manager/hplus/js/bootstrap.min.js?v=3.3.5"></script>
+    <script src="/base-manager/hplus/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="/base-manager/hplus/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="/base-manager/hplus/js/plugins/layer/layer.min.js"></script>
+    <script src="/base-manager/hplus/js/hplus.min.js?v=4.0.0"></script>
+    <script type="text/javascript" src="/base-manager/hplus/js/contabs.min.js"></script>
+    <script src="/base-manager/hplus/js/plugins/pace/pace.min.js"></script>
 </body>
 
 </html>
