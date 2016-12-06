@@ -1,6 +1,6 @@
 package com.base.cache.redis.exception;
 
-import javax.xml.rpc.ServiceException;
+
 
 public class RedisServiceException extends ServiceException {
 	private static final long	serialVersionUID	= 1L;

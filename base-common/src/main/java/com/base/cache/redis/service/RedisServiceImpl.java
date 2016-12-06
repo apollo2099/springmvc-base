@@ -3,13 +3,10 @@ package com.base.cache.redis.service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.exceptions.JedisDataException;
-
 import com.base.cache.redis.DefaultJedisFactory;
 import com.base.cache.redis.RedisFactory;
-import com.base.cache.redis.exception.RedisServiceException;
 
 /**
  * Redis 接口操作工具类
