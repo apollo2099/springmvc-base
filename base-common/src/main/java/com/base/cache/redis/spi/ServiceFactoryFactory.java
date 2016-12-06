@@ -1,4 +1,4 @@
-package com.base.cache.redis.factory;
+package com.base.cache.redis.spi;
 
 import java.util.HashMap;
 import java.util.List;

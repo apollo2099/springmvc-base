@@ -1,4 +1,4 @@
-package com.base.cache.redis.factory;
+package com.base.cache.redis.spi;
 
 /**
  * Created by Administrator on 2016/12/1.

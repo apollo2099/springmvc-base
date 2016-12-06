@@ -1,6 +1,7 @@
 package com.base.cache.redis.factory;
 
 import com.base.cache.redis.service.RedisService;
+import com.base.cache.redis.spi.ServiceFactoryFactory;
 
 /**
  * Created by Administrator on 2016/11/25.
