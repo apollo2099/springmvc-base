@@ -58,7 +58,7 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:mybatis-configuration.xml"/>
 		<!-- 启动时自动加载所有的mapper.xml-->
-		<property  name="mapperLocations"  value="classpath:com/base/persistence/*Mapper.xml"/> 
+		<property  name="mapperLocations"  value="classpath*:com/base/persistence/*Mapper.xml"/> 
 	</bean>
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
@@ -67,7 +67,7 @@
 	
 	<!-- DAO接口所在的包名,Spring会自动查找其下的类 -->
 	<bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.base.**.persistence" />
+		<property name="basePackage" value="com.base.persistence" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
 	</bean>
 	
@@ -115,6 +115,7 @@
 	<!-- 自动扫描组件，需要把controller去掉，否则影响事务管理 -->
     <context:component-scan base-package="com.base">
       <context:exclude-filter type="regex" expression="com.base.web.*"/>
+      <context:exclude-filter type="regex" expression="com.base.modules.*"/>
     </context:component-scan>
 	
 	<bean id="springContextHolder" class="com.base.framework.spring.SpringContextHolder" />
@@ -127,4 +128,5 @@
 			</list>
 		</property>
 	</bean>
+	
 </beans> 
