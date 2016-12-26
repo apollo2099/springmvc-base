@@ -31,4 +31,48 @@ public class SysUserService {
         }
         return isLoginFlag;
     }
+    
+    /**
+     * 用户注册
+     * @param sysUser
+     * @return
+     * @throws Exception
+     */
+    public Boolean register(SysUser sysUser) throws Exception{
+    	int num = baseDao.save(sqlMap+"findByUserName", sysUser);
+    	if(num>0){
+    		return true;
+    	}
+    	return false;
+    }
+    
+    /**
+     * 找回用户密码
+     * @param sysUser
+     * @return
+     * @throws Exception
+     */
+    public SysUser findPassword(SysUser sysUser) throws Exception{
+        SysUser result = baseDao.findForObject(sqlMap+"findByUserName",sysUser);
+        if(ObjectUtils.isNotEmpty(result)){
+            if(){
+            	
+            }
+        }
+    }
+    
+    /**
+     * 根据用户ID查询用户详情
+     * @param userId
+     * @return
+     * @throws Exception
+     */
+    public SysUser findUserById(Integer userId) throws Exception{
+    	SysUser sysUser = baseDao.findForObject(sqlMap+"findByUserId", userId);
+    	return sysUser;
+    }
+    
+    
+    
+    
 }
