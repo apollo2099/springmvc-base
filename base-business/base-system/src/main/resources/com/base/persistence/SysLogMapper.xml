@@ -18,38 +18,38 @@
   </sql>
 
   <select id="findById" parameterType="java.lang.String" resultMap="SysLog">
-    select 
+    select
     <include refid="Base_Column_List" />
     from sys_log
     where id = #{id,jdbcType=VARCHAR}
   </select>
 
-  <delete id="delete" parameterType="java.lang.String">
-    delete from sys_log
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
+  <!--<delete id="delete" parameterType="java.lang.String">-->
+    <!--delete from sys_log-->
+    <!--where id = #{id,jdbcType=VARCHAR}-->
+  <!--</delete>-->
 
-  <insert id="insert" parameterType="com.base.modules.sys.dto.SysLog">
-    insert into sys_log (id, type, title, 
-      create_by, create_date, remote_addr, 
-      user_agent, request_uri, method, 
-      params, exception)
-    values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{title,jdbcType=VARCHAR}, 
-      #{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{remoteAddr,jdbcType=VARCHAR}, 
-      #{userAgent,jdbcType=VARCHAR}, #{requestUri,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR}, 
-      #{params,jdbcType=LONGVARCHAR}, #{exception,jdbcType=LONGVARCHAR})
-  </insert>
+  <!--<insert id="insert" parameterType="com.base.modules.sys.dto.SysLog">-->
+    <!--insert into sys_log (id, type, title,-->
+      <!--create_by, create_date, remote_addr,-->
+      <!--user_agent, request_uri, method,-->
+      <!--params, exception)-->
+    <!--values (#{id,jdbcType=VARCHAR}, #{type,jdbcType=CHAR}, #{title,jdbcType=VARCHAR},-->
+      <!--#{createBy,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{remoteAddr,jdbcType=VARCHAR},-->
+      <!--#{userAgent,jdbcType=VARCHAR}, #{requestUri,jdbcType=VARCHAR}, #{method,jdbcType=VARCHAR},-->
+      <!--#{params,jdbcType=LONGVARCHAR}, #{exception,jdbcType=LONGVARCHAR})-->
+  <!--</insert>-->
 
-  <update id="update" parameterType="com.base.modules.sys.dto.SysLog">
-    update sys_log
-    set type = #{type,jdbcType=CHAR},
-      title = #{title,jdbcType=VARCHAR},
-      create_by = #{createBy,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=TIMESTAMP},
-      remote_addr = #{remoteAddr,jdbcType=VARCHAR},
-      user_agent = #{userAgent,jdbcType=VARCHAR},
-      request_uri = #{requestUri,jdbcType=VARCHAR},
-      method = #{method,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+  <!--<update id="update" parameterType="com.base.modules.sys.dto.SysLog">-->
+    <!--update sys_log-->
+    <!--set type = #{type,jdbcType=CHAR},-->
+      <!--title = #{title,jdbcType=VARCHAR},-->
+      <!--create_by = #{createBy,jdbcType=VARCHAR},-->
+      <!--create_date = #{createDate,jdbcType=TIMESTAMP},-->
+      <!--remote_addr = #{remoteAddr,jdbcType=VARCHAR},-->
+      <!--user_agent = #{userAgent,jdbcType=VARCHAR},-->
+      <!--request_uri = #{requestUri,jdbcType=VARCHAR},-->
+      <!--method = #{method,jdbcType=VARCHAR}-->
+    <!--where id = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
 </mapper>
