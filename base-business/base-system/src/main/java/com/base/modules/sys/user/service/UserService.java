@@ -10,7 +10,7 @@ import com.base.common.dao.BaseDao;
 @Service("userService")
 public class UserService {
 
-	private static final String sqlMap ="UserMapper.";
+	private static final String sqlMap ="com.base.persistence.UserMapper.";
 //	@Autowired
 //	private UserMapper userMapper;
 
