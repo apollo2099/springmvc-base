@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.persistence.SysUserMapper">
+  <resultMap id="BaseResultMap" type="com.base.modules.sys.dto.SysUser">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="login_name" jdbcType="VARCHAR" property="loginName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="last_login" jdbcType="VARCHAR" property="lastLogin" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    user_id, login_name, password, name, last_login, ip, status, description
+  </sql>
+
+  <!--根据用户ID查询用户信息-->
+  <select id="findByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+
+  <!--验证用户登录-->
+  <select id="findByUserName" parameterType="com.base.modules.sys.dto.SysUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sys_user
+    where login_name = #{loginName}
+    and password = #{password}
+  </select>
+
+
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from sys_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.base.modules.sys.dto.SysUser">
+    insert into sys_user (user_id, login_name, password, 
+      name, last_login, ip, 
+      status, description)
+    values (#{userId,jdbcType=INTEGER}, #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{lastLogin,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="update" parameterType="com.base.modules.sys.dto.SysUser">
+    update sys_user
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      last_login = #{lastLogin,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

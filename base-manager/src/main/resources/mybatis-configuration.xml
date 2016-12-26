@@ -3,6 +3,18 @@
 
 <configuration>
 
+	<!-- 映射实体别名
+	<typeAliases>
+		<typeAlias type="com.base.modules.sys.dto.SysButton" alias="SysButton"/>
+		<typeAlias type="com.base.modules.sys.dto.SysLog" alias="SysLog"/>
+		<typeAlias type="com.base.modules.sys.dto.SysMenu" alias="SysMenu"/>
+		<typeAlias type="com.base.modules.sys.dto.SysRole" alias="SysRole"/>
+		<typeAlias type="com.base.modules.sys.dto.SysRoleResource" alias="SysRoleResource"/>
+		<typeAlias type="com.base.modules.sys.dto.SysUser" alias="SysUser"/>
+		<typeAlias type="com.base.modules.sys.dto.SysUserRole" alias="SysUserRole"/>
+	</typeAliases>
+	-->
+
 	<plugins>
 		<plugin interceptor="com.base.common.dal.mybatis.plugin.OffsetLimitInterceptor">
 			<property name="dialectClass" value="com.base.common.dal.mybatis.dialect.MySQLDialect"/>

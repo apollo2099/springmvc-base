@@ -14,7 +14,7 @@ public class UserController {
     @Resource
 	private UserService  userService;
     
-	@RequestMapping("/login")
+	@RequestMapping("/toLogin")
 	public String login() {
 		String username="admin";
 		Map map= null;
