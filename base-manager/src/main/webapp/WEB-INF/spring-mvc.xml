@@ -16,6 +16,7 @@
      
     <!-- 启动扫描所有的controller -->
     <context:component-scan base-package="com.base.web"/>
+    <context:component-scan base-package="com.base.modules"/>
      
     <!-- 主要作用于@Controller，激活该模式,spring MVC为@Controllers分发请求所必须-->
     <mvc:annotation-driven/>
@@ -52,8 +53,7 @@
 	</aop:config>
     
     <!-- 配置js，css,images等静态文件直接映射到对应的文件夹，不被DispatcherServlet处理 -->
-	<mvc:resources mapping="/dwz/**" location="/dwz/" cache-period="31536000" />
-	<mvc:resources mapping="/h-ui/**" location="/h-ui/" cache-period="31536000" />
+	<mvc:resources mapping="/pixeladmin/**" location="/pixeladmin/" cache-period="31536000" />
 	<mvc:resources mapping="/hplus/**" location="/hplus/" cache-period="31536000" />
     <mvc:default-servlet-handler />  
     
