@@ -39,8 +39,12 @@
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="请输入密码" name="password" required="">
                 </div>
+     
                 <div class="form-group">
                     <input type="password" class="form-control" placeholder="请再次输入密码" name="password2" required="">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="昵称" name="name" required="">
                 </div>
                 <div class="form-group text-left">
                     <div class="checkbox i-checks">

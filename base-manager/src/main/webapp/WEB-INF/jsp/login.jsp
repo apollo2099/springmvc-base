@@ -34,7 +34,7 @@
             </div>
             <h3>欢迎使用 H+</h3>
 
-            <form class="m-t" role="form" action="/base-manager/user/login">
+            <form class="m-t" role="form" action="/base-manager/user/login" method="post">
                 <div class="form-group">
                     <input type="text" name="loginName" class="form-control" placeholder="用户名" required="">
                 </div>

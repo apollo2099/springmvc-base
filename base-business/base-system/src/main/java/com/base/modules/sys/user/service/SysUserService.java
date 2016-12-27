@@ -39,8 +39,8 @@ public class SysUserService {
      * @throws Exception
      */
     public Boolean register(SysUser sysUser) throws Exception{
-    	int num = baseDao.save(sqlMap+"save", sysUser);
-    	if(num>0){
+    	int num = baseDao.save(sqlMap+"insert", sysUser);
+    	if(ObjectUtils.isNotEmpty(num)){
     		return true;
     	}
     	return false;
