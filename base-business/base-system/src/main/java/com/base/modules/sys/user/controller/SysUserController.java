@@ -69,6 +69,9 @@ public class SysUserController {
     @RequestMapping(value ="/register",method =RequestMethod.POST)
     public String register(SysUser sysUser){
     	try {
+            sysUser.setStatus("1");
+            sysUser.setIp("127.0.0.1");
+            sysUser.setLastLogin("");
 			Boolean isFlag = sysUserService.register(sysUser);
 			if(isFlag){
                 System.out.print("注册成功");

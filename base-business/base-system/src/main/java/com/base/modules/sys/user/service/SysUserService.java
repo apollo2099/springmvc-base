@@ -39,7 +39,7 @@ public class SysUserService {
      * @throws Exception
      */
     public Boolean register(SysUser sysUser) throws Exception{
-    	int num = baseDao.save(sqlMap+"findByUserName", sysUser);
+    	int num = baseDao.save(sqlMap+"save", sysUser);
     	if(num>0){
     		return true;
     	}
@@ -55,10 +55,11 @@ public class SysUserService {
     public SysUser findPassword(SysUser sysUser) throws Exception{
         SysUser result = baseDao.findForObject(sqlMap+"findByUserName",sysUser);
         if(ObjectUtils.isNotEmpty(result)){
-            if(){
-            	
+            if(sysUser.getPassword().equals(result.getPassword())){
+                return result;
             }
         }
+        return null;
     }
     
     /**
