@@ -32,7 +32,7 @@
             </div>
             <h3>欢迎注册 H+</h3>
             <p>创建一个H+新账户</p>
-            <form class="m-t" role="form" action="/base-manager/user/register" method="post">
+            <form class="m-t" role="form" action="/base-manager/user/register" method="post" target="_self">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="请输入用户名" name="loginName" required="">
                 </div>

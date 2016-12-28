@@ -5,6 +5,6 @@
 <title>B+电子商务管理平台</title>
 </head>
 <body>
-<%@ include  file="../jsp/management/index_main.jsp" %>
+<%@ include  file="index_main.jsp" %>
 </body>
 </html>
