@@ -2,7 +2,6 @@ package com.base.modules.sys.user.controller;
 
 import com.base.modules.sys.dto.SysUser;
 import com.base.modules.sys.user.service.SysUserService;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +17,15 @@ import javax.annotation.Resource;
 public class SysUserController {
     @Resource
     private SysUserService sysUserService;
+
+
+    /**
+     * 用户分页查询列表页面
+     * @return
+     */
+    public String list(SysUser sysUser){
+        return "/sys/user/list";
+    }
 
     /**
      * 跳转到登录页面
@@ -50,7 +58,11 @@ public class SysUserController {
         }
         return "/login";
     }
-    
+
+    public String loginout(){
+        return "/login";
+    }
+
     /**
      * 跳转到注册页面
      * @return
@@ -85,4 +97,9 @@ public class SysUserController {
 		}
     	return "/register";
     }
+
+
+
+
+
 }

@@ -30,7 +30,7 @@
             <li><a class="J_menuItem" href="mailbox.html">信箱</a>
             </li>
             <li class="divider"></li>
-            <li><a href="login.html">安全退出</a>
+            <li><a href="/user/loginout">安全退出</a>
             </li>
           </ul>
         </div>
@@ -38,33 +38,36 @@
         </div>
       </li>
       <li>
-        <a href="#">
-          <i class="fa fa-home"></i>
-          <span class="nav-label">主页</span>
+        <a href="#"><i class="fa fa-home"></i>
+          <span class="nav-label">系统管理</span>
           <span class="fa arrow"></span>
         </a>
         <ul class="nav nav-second-level">
           <li>
-            <a class="J_menuItem" href="index_v1.html" data-index="0">主页示例一</a>
+            <a class="J_menuItem" href="/user/list" data-index="0">系统用户</a>
           </li>
           <li>
-            <a class="J_menuItem" href="index_v2.html">主页示例二</a>
+            <a class="J_menuItem" href="index_v2.html">菜单列表</a>
           </li>
           <li>
-            <a class="J_menuItem" href="index_v3.html">主页示例三</a>
+            <a class="J_menuItem" href="index_v3.html">角色列表</a>
           </li>
           <li>
-            <a class="J_menuItem" href="index_v4.html">主页示例四</a>
-          </li>
-          <li>
-            <a href="index_v5.html" target="_blank">主页示例五</a>
+            <a class="J_menuItem" href="index_v4.html">权限管理</a>
           </li>
         </ul>
+      </li>
 
-      </li>
+
       <li>
-        <a class="J_menuItem" href="layouts.html"><i class="fa fa-columns"></i> <span class="nav-label">布局</span></a>
+        <a href="#"><i class="fa fa-cutlery"></i> <span class="nav-label">系统日志 </span><span class="fa arrow"></span></a>
+        <ul class="nav nav-second-level">
+          <li><a class="J_menuItem" href="form_builder.html">日志列表</a>
+          </li>
+        </ul>
       </li>
+
+      <%--
       <li>
         <a href="#">
           <i class="fa fa fa-bar-chart-o"></i>
@@ -352,6 +355,8 @@
         </ul>
       </li>
 
+
+       --%>
     </ul>
   </div>
 </nav>
