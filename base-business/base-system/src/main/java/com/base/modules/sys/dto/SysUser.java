@@ -1,5 +1,7 @@
 package com.base.modules.sys.dto;
 
+import com.base.common.utils.PageInfo;
+
 public class SysUser {
     private Integer userId;
 
@@ -16,6 +18,17 @@ public class SysUser {
     private String status;
 
     private String description;
+
+
+    PageInfo<SysUser> pageInfo;
+
+    public PageInfo<SysUser> getPageInfo() {
+        return pageInfo;
+    }
+
+    public void setPageInfo(PageInfo<SysUser> pageInfo) {
+        this.pageInfo = pageInfo;
+    }
 
     public Integer getUserId() {
         return userId;

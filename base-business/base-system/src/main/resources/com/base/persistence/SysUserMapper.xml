@@ -16,6 +16,18 @@
     user_id, login_name, password, name, last_login, ip, status, description
   </sql>
 
+  <select id="count" parameterType="com.base.modules.sys.dto.SysUser" resultType="int">
+    SELECT  count(1) from sys_user;
+  </select>
+
+  <select id="list" parameterType="com.base.modules.sys.dto.SysUser" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List" />
+    from sys_user
+    limit 0 , 10
+  </select>
+
+
   <!--根据用户ID查询用户信息-->
   <select id="findByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

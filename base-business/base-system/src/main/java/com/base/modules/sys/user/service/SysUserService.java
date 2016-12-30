@@ -1,17 +1,19 @@
 package com.base.modules.sys.user.service;
-
 import com.base.common.dao.BaseDao;
+import com.base.common.utils.PageInfo;
 import com.base.modules.sys.dto.SysUser;
 import com.base.utils.ObjectUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
- * 系统用户服务类
- * Created by liaoxj on 2016/12/26.
+ * Created by liaoxj on 2016/12/29.
  */
 @Service("sysUserService")
-public class SysUserService {
+public class SysUserService{
+
     private static final String sqlMap ="com.base.persistence.SysUserMapper.";
 
     @Autowired
@@ -31,7 +33,7 @@ public class SysUserService {
         }
         return isLoginFlag;
     }
-    
+
     /**
      * 用户注册
      * @param sysUser
@@ -39,13 +41,13 @@ public class SysUserService {
      * @throws Exception
      */
     public Boolean register(SysUser sysUser) throws Exception{
-    	int num = baseDao.save(sqlMap+"insert", sysUser);
-    	if(ObjectUtils.isNotEmpty(num)){
-    		return true;
-    	}
-    	return false;
+        int num = baseDao.save(sqlMap+"insert", sysUser);
+        if(ObjectUtils.isNotEmpty(num)){
+            return true;
+        }
+        return false;
     }
-    
+
     /**
      * 找回用户密码
      * @param sysUser
@@ -61,7 +63,7 @@ public class SysUserService {
         }
         return null;
     }
-    
+
     /**
      * 根据用户ID查询用户详情
      * @param userId
@@ -69,11 +71,28 @@ public class SysUserService {
      * @throws Exception
      */
     public SysUser findUserById(Integer userId) throws Exception{
-    	SysUser sysUser = baseDao.findForObject(sqlMap+"findByUserId", userId);
-    	return sysUser;
+        SysUser sysUser = baseDao.findForObject(sqlMap+"findByUserId", userId);
+        return sysUser;
     }
-    
-    
-    
-    
+
+
+    /**
+     * 查询用户分页信息（dataTable）
+     * @param page
+     * @param sysUser
+     * @return
+     */
+    public PageInfo<SysUser> pageList(SysUser sysUser)throws Exception {
+        PageInfo<SysUser> page = sysUser.getPageInfo();
+        int totalNum = baseDao.findForObject(sqlMap+"count", sysUser);
+        // 执行分页查询
+        List<SysUser> records =baseDao.findForList(sqlMap+"list",sysUser);
+        if(ObjectUtils.isEmpty(page)){
+            page = new PageInfo<SysUser>();
+        }
+        page.setData(records);
+        page.setRecordsTotal(totalNum);
+        page.setRecordsFiltered(totalNum);
+        return page;
+    }
 }

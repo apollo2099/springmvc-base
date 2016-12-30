@@ -1,11 +1,13 @@
 package com.base.modules.sys.user.controller;
 
+import com.base.common.utils.PageInfo;
 import com.base.modules.sys.dto.SysUser;
 import com.base.modules.sys.user.service.SysUserService;
+import com.base.utils.JSONUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 
 /**
@@ -14,7 +16,7 @@ import javax.annotation.Resource;
  */
 @Controller
 @RequestMapping("/user")
-public class SysUserController {
+public class SysUserController{
     @Resource
     private SysUserService sysUserService;
 
@@ -23,9 +25,35 @@ public class SysUserController {
      * 用户分页查询列表页面
      * @return
      */
-    public String list(SysUser sysUser){
+    @RequestMapping("/list")
+    public String list(){
         return "/sys/user/list";
     }
+
+
+    /**
+     * 用户分页查询列表页面
+     * @return
+     */
+    @RequestMapping("/pageList")
+    @ResponseBody
+    public String pageList(SysUser sysUser){
+        PageInfo<SysUser> pageInfo = null;
+        try {
+            pageInfo = sysUserService.pageList(sysUser);
+            System.out.print(JSONUtils.jsonToString(pageInfo));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        Map<String, Object> dataMap =new HashMap<String, Object>();
+//        dataMap.put("iTotalRecords", pageInfo.getRecordsTotal());
+//        dataMap.put("sEcho",pageInfo.get);
+//        dataMap.put("iTotalDisplayRecords", userPage.getTotalRow());
+//        dataMap.put("aaData", page.getPages());
+
+        return JSONUtils.jsonToString(pageInfo);
+    }
+
 
     /**
      * 跳转到登录页面

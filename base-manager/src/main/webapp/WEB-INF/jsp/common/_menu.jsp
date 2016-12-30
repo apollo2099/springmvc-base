@@ -30,7 +30,7 @@
             <li><a class="J_menuItem" href="mailbox.html">信箱</a>
             </li>
             <li class="divider"></li>
-            <li><a href="/user/loginout">安全退出</a>
+            <li><a href="/base-manager/user/loginout">安全退出</a>
             </li>
           </ul>
         </div>
@@ -44,7 +44,7 @@
         </a>
         <ul class="nav nav-second-level">
           <li>
-            <a class="J_menuItem" href="/user/list" data-index="0">系统用户</a>
+            <a class="J_menuItem" href="/base-manager/user/list" data-index="0">系统用户</a>
           </li>
           <li>
             <a class="J_menuItem" href="index_v2.html">菜单列表</a>

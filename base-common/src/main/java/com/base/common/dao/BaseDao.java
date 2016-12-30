@@ -23,4 +23,5 @@ public interface BaseDao {
 
 	public <K, V> Map<K, V> findForMap(String str, Object obj, String key, String value) throws Exception;
 
+
 }
