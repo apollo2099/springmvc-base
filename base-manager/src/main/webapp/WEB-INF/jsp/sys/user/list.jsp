@@ -119,7 +119,7 @@
                     {"mData": 'password'}, //mData 表示发请求时候本列的列明，返回的数据中相同下标名字的数据会填充到这一列
                     {"mData": 'name'},
                     {"mData": 'lastLogin'},
-                    {"mData": 'ip'},
+                    {"mData": 'ip'}
                 ],
                 "aoColumnDefs": [//和aoColums类似，但他可以给指定列附近爱属性
                     {sDefaultContent: '',aTargets: [ '_all' ]},

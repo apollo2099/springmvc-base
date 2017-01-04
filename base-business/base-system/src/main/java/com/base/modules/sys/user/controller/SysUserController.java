@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 
 /**
  * 用户登录操作类
@@ -37,8 +39,18 @@ public class SysUserController{
      */
     @RequestMapping("/pageList")
     @ResponseBody
-    public String pageList(SysUser sysUser){
-        PageInfo<SysUser> pageInfo = null;
+    public String pageList(SysUser sysUser,HttpServletRequest request){
+        Enumeration enumeration = request.getParameterNames();
+        System.out.print(JSONUtils.jsonToString(enumeration));
+
+        String sEcho = request.getParameter("sEcho");
+        String start = request.getParameter("iDisplayStart");// 起始
+        String length = request.getParameter("iDisplayLength");// 分页大小size
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setStart(Integer.parseInt(start));
+        pageInfo.setLength(Integer.parseInt(length) + Integer.parseInt(start));
+        pageInfo.setsEcho(Integer.parseInt(sEcho));
+        sysUser.setPageInfo(pageInfo);
         try {
             pageInfo = sysUserService.pageList(sysUser);
             System.out.print(JSONUtils.jsonToString(pageInfo));

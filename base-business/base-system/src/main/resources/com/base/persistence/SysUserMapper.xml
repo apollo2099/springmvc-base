@@ -24,7 +24,7 @@
     SELECT
     <include refid="Base_Column_List" />
     from sys_user
-    limit 0 , 10
+    limit #{pageInfo.start} , #{pageInfo.length}
   </select>
 
 

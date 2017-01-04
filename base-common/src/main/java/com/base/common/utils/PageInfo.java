@@ -7,8 +7,10 @@ package com.base.common.utils;
 public class PageInfo<T> {
 
     private Integer start;
+    private Integer size;
     private Integer length;
     private Integer draw;
+    private Integer sEcho;
     private Integer recordsTotal;
     private Integer recordsFiltered;
     private Object data;
@@ -19,6 +21,14 @@ public class PageInfo<T> {
 
     public void setStart(Integer start) {
         this.start = start;
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
     }
 
     public Integer getLength() {
@@ -35,6 +45,14 @@ public class PageInfo<T> {
 
     public void setDraw(Integer draw) {
         this.draw = draw;
+    }
+
+    public Integer getsEcho() {
+        return sEcho;
+    }
+
+    public void setsEcho(Integer sEcho) {
+        this.sEcho = sEcho;
     }
 
     public Integer getRecordsTotal() {
