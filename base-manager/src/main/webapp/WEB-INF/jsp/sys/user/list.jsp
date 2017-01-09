@@ -23,26 +23,18 @@
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
-                    <h5>基本 <small>分类，查找</small></h5>
+                    <h5>用户列表</h5>
                     <div class="ibox-tools">
-                        <a class="collapse-link">
-                            <i class="fa fa-chevron-up"></i>
-                        </a>
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="table_data_tables.html#">
-                            <i class="fa fa-wrench"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-user">
-                            <li><a href="table_data_tables.html#">选项1</a>
-                            </li>
-                            <li><a href="table_data_tables.html#">选项2</a>
-                            </li>
-                        </ul>
-                        <a class="close-link">
-                            <i class="fa fa-times"></i>
-                        </a>
+                    
                     </div>
                 </div>
                 <div class="ibox-content">
+                    <p>
+                        <button type="button" class="btn btn-outline btn-default">新增</button>
+                        <button type="button" class="btn btn-outline btn-primary">修改</button>
+                        <button type="button" class="btn btn-outline btn-success">删除</button>
+                        <button type="button" class="btn btn-outline btn-info">详情</button>
+                    </p>
 
                     <table class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
@@ -58,6 +50,8 @@
                         </thead>
                         <tbody>
                         </tbody>
+                        
+                        <%--
                         <tfoot>
                         <tr>
                             <th>ID</th>
@@ -69,6 +63,7 @@
                             <th>操作</th>
                         </tr>
                         </tfoot>
+                         --%>
                     </table>
 
                 </div>
@@ -111,7 +106,7 @@
                 "bServerSide": true, //开启服务器模式，使用服务器端处理配置datatable。注意：sAjaxSource参数也必须被给予为了给datatable源代码来获取所需的数据对于每个画。 这个翻译有点别扭。开启此模式后，你对datatables的每个操作 每页显示多少条记录、下一页、上一页、排序（表头）、搜索，这些都会传给服务器相应的值。
                 "sAjaxSource": "/base-manager/user/pageList", //给服务器发请求的url
                 "createdRow" : function(row, mData, index) {
-                    $('td:eq(0)', row).html("<input type='checkbox' name='chx_default' value='" + mData.user_id + "'/>");
+                   // $('td:eq(0)', row).html("<input type='checkbox' name='chx_default' value='" + mData.user_id + "'/>");
                 },
                 "aoColumns": [ //这个属性下的设置会应用到所有列，按顺序没有是空
                     {"mData": 'userId'},
@@ -123,16 +118,19 @@
                 ],
                 "aoColumnDefs": [//和aoColums类似，但他可以给指定列附近爱属性
                     {sDefaultContent: '',aTargets: [ '_all' ]},
-                    {"bSortable": false, "aTargets": [1, 3, 6]},  //这句话意思是第1,3,6,7,8,9列（从0开始算） 不能排序
-                    {"bSearchable": false, "aTargets": [1, 2, 3, 4, 5, 6]}, //bSearchable 这个属性表示是否可以全局搜索，其实在服务器端分页中是没用的
+                    {"bSortable": false, "aTargets": [0, 1, 2, 3, 4, 5, 6]},  //这句话意思是第1,3,6,7,8,9列（从0开始算） 不能排序
+                    //{"bSearchable": false, "aTargets": [1, 2, 3, 4, 5, 6]}, //bSearchable 这个属性表示是否可以全局搜索，其实在服务器端分页中是没用的
                 ],
                 "aaSorting": [[2, "desc"]], //默认排序
                 "fnRowCallback": function(nRow, aData, iDisplayIndex) {// 当创建了行，但还未绘制到屏幕上的时候调用，通常用于改变行的class风格
-                    var statusHtml;
-
-                    $('td:eq(6)', nRow).html(statusHtml+
-                    '<button class="btn btn-info " type="button"><i class="fa fa-paste"></i> 编辑</button> <button class="btn btn-warning " type="button"><i class="fa fa-warning"></i> <span class="bold">警告</span> </button>'
-                    );
+                    var statusHtml="";
+                    <%--
+                    statusHtml+='<button class="btn btn-default btn-circle" type="button"><i class="fa fa-check"></i></button>';
+                    statusHtml+='<button class="btn btn-primary btn-circle" type="button"><i class="fa fa-list"></i></button>';
+                    statusHtml+='<button class="btn btn-success btn-circle" type="button"><i class="fa fa-link"></i></button>';
+                    statusHtml+='<button class="btn btn-info btn-circle" type="button"><i class="fa fa-check"></i></button>';
+                    --%>
+                    $('td:eq(6)', nRow).html(statusHtml);
                     return nRow;
                 },
                 "fnServerParams": function(aoData) {
