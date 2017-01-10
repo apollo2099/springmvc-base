@@ -117,7 +117,8 @@
     </context:component-scan>
 	
 	<bean id="springContextHolder" class="com.base.framework.spring.SpringContextHolder" />
-	
+
+	<!--
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
@@ -126,5 +127,6 @@
 			</list>
 		</property>
 	</bean>
-	
+	-->
+
 </beans> 

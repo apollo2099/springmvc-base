@@ -1,6 +1,7 @@
 package com.base.modules.sys.user.controller;
 
 import com.base.common.utils.PageInfo;
+import com.base.controller.BaseController;
 import com.base.modules.sys.dto.SysUser;
 import com.base.modules.sys.user.service.SysUserService;
 import com.base.utils.JSONUtils;
@@ -8,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
@@ -18,7 +21,7 @@ import java.util.Enumeration;
  */
 @Controller
 @RequestMapping("/user")
-public class SysUserController{
+public class SysUserController extends BaseController {
     @Resource
     private SysUserService sysUserService;
 
@@ -99,6 +102,10 @@ public class SysUserController{
         return "/login";
     }
 
+    /**
+     * 退出当前登录用户
+     * @return
+     */
     public String loginout(){
         return "/login";
     }
@@ -139,6 +146,63 @@ public class SysUserController{
     }
 
 
+    /**
+     * 调转到编辑用户页面
+     * @return
+     */
+    @RequestMapping(value ="/edit",method =RequestMethod.GET)
+    public ModelAndView edit(Integer userId){
+        SysUser sysUser = null;
+        try {
+            sysUser = sysUserService.findUserById(userId);
+
+            ModelAndView mv = this.getModelAndView();
+            mv.addObject("sysUser", sysUser);
+            mv.setViewName("/sys/user/edit");
+            return mv;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+    /**
+     * 更新系统用户信息
+     * @param sysUser
+     * @return
+     */
+    @RequestMapping(value ="/edit",method =RequestMethod.POST)
+    @ResponseBody
+    public String edit(SysUser sysUser){
+        try {
+            Boolean isFlag = sysUserService.update(sysUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "/sys/user/edit";
+    }
+
+
+    /**
+     * 调转到用户详情页面
+     * @return
+     */
+    @RequestMapping(value ="/detail",method =RequestMethod.GET)
+    public ModelAndView detail(Integer userId){
+        SysUser sysUser = null;
+        try {
+            sysUser = sysUserService.findUserById(userId);
+
+            ModelAndView mv = this.getModelAndView();
+            mv.addObject("sysUser", sysUser);
+            mv.setViewName("/sys/user/detail");
+            return mv;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 

@@ -49,6 +49,21 @@ public class SysUserService{
     }
 
     /**
+     * 用户信息更新
+     * @param sysUser
+     * @return
+     * @throws Exception
+     */
+    public Boolean update(SysUser sysUser) throws Exception{
+        int num = baseDao.update(sqlMap+"update", sysUser);
+        if(ObjectUtils.isNotEmpty(num)){
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
      * 找回用户密码
      * @param sysUser
      * @return
@@ -84,6 +99,7 @@ public class SysUserService{
      */
     public PageInfo<SysUser> pageList(SysUser sysUser)throws Exception {
         PageInfo<SysUser> page = sysUser.getPageInfo();
+        // 查询符合条件的条数
         int totalNum = baseDao.findForObject(sqlMap+"count", sysUser);
         // 执行分页查询
         List<SysUser> records =baseDao.findForList(sqlMap+"list",sysUser);
@@ -95,4 +111,7 @@ public class SysUserService{
         page.setRecordsFiltered(totalNum);
         return page;
     }
+
+
+
 }

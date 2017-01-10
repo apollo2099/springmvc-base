@@ -16,9 +16,18 @@
 	-->
 
 	<plugins>
+		<!--
 		<plugin interceptor="com.base.common.dal.mybatis.plugin.OffsetLimitInterceptor">
 			<property name="dialectClass" value="com.base.common.dal.mybatis.dialect.MySQLDialect"/>
 		</plugin>
+        -->
+
+		<plugin interceptor="com.base.common.plugin.MybatisSqlPlugin">
+			<property name="showSql" value="true"/>
+		</plugin>
 	</plugins>
+
+
+
 	 
 </configuration>

@@ -13,3 +13,5 @@
 <script src="/base-manager/hplus/js/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="/base-manager/hplus/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="/base-manager/hplus/js/content.min.js?v=1.0.0"></script>
+
+<script src="/base-manager/hplus/js/plugins/layer/layer.min.js"></script>

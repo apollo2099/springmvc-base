@@ -29,11 +29,14 @@
                     </div>
                 </div>
                 <div class="ibox-content">
+                    <button type="button" class="btn btn-outline btn-default">新增</button>
                     <p>
-                        <button type="button" class="btn btn-outline btn-default">新增</button>
+
+                        <%--
                         <button type="button" class="btn btn-outline btn-primary">修改</button>
                         <button type="button" class="btn btn-outline btn-success">删除</button>
                         <button type="button" class="btn btn-outline btn-info">详情</button>
+                        --%>
                     </p>
 
                     <table class="table table-striped table-bordered table-hover dataTables-example">
@@ -106,7 +109,7 @@
                 "bServerSide": true, //开启服务器模式，使用服务器端处理配置datatable。注意：sAjaxSource参数也必须被给予为了给datatable源代码来获取所需的数据对于每个画。 这个翻译有点别扭。开启此模式后，你对datatables的每个操作 每页显示多少条记录、下一页、上一页、排序（表头）、搜索，这些都会传给服务器相应的值。
                 "sAjaxSource": "/base-manager/user/pageList", //给服务器发请求的url
                 "createdRow" : function(row, mData, index) {
-                   // $('td:eq(0)', row).html("<input type='checkbox' name='chx_default' value='" + mData.user_id + "'/>");
+                    //$('td:eq(0)', row).html("<input type='hidden' name='chx_default' value='" + mData.userId + "'/>");
                 },
                 "aoColumns": [ //这个属性下的设置会应用到所有列，按顺序没有是空
                     {"mData": 'userId'},
@@ -124,12 +127,9 @@
                 "aaSorting": [[2, "desc"]], //默认排序
                 "fnRowCallback": function(nRow, aData, iDisplayIndex) {// 当创建了行，但还未绘制到屏幕上的时候调用，通常用于改变行的class风格
                     var statusHtml="";
-                    <%--
-                    statusHtml+='<button class="btn btn-default btn-circle" type="button"><i class="fa fa-check"></i></button>';
-                    statusHtml+='<button class="btn btn-primary btn-circle" type="button"><i class="fa fa-list"></i></button>';
-                    statusHtml+='<button class="btn btn-success btn-circle" type="button"><i class="fa fa-link"></i></button>';
-                    statusHtml+='<button class="btn btn-info btn-circle" type="button"><i class="fa fa-check"></i></button>';
-                    --%>
+                    statusHtml+='<a class="btn btn-xs btn-info" onclick="detailUser(' + "'" + aData.userId + "'" + ')"><i class="fa fa-link"></i>详情</a>';
+                    statusHtml+='<a class="btn btn-xs btn-warning" onclick="editUser(' + "'" + aData.userId + "'" + ')"><i class="fa fa-pencil"></i>编辑</a>';
+                    statusHtml+='<a class="btn btn-xs btn-danger" onclick="delUser(' + "'" + aData.userId + "'" + ')"><i class="fa fa-remove"></i>删除</a>';
                     $('td:eq(6)', nRow).html(statusHtml);
                     return nRow;
                 },
@@ -146,7 +146,6 @@
 
 
     function refreshTable(toFirst) {
-        //defaultTable.ajax.reload();
         if(toFirst){//表格重绘，并跳转到第一页
             defTable.fnDraw();
         }else{//表格重绘，保持在当前页
@@ -155,12 +154,48 @@
     }
 
 
-    function editUser(id){
+    function detailUser(userId){
         var title = "新增用户";
-        var url = "#springUrl('/perm/user/edit.html')";
-        if(id!=null){
+        var url = "/base-manager/user/detail?userId=" + userId;
+        layer.open({
+            type: 2,
+            title: title,
+            shadeClose: true,
+            shade: 0.8,
+            area: ['600px', '430px'],
+            fix: false,
+            maxmin: true,
+            content: url
+        });
+    }
+
+    function delUser(userId) {
+        //询问框
+        layer.confirm('确定删除吗？', {
+            btn: ['确定', '取消'] //按钮
+        }, function () {
+            $.ajax({
+                type: "POST",
+                url: "/base-manager/user/delete/" + userId,
+                datatype: "text",
+                success: function (data) {
+                    if(data == 'true'){
+                        refreshTable();
+                    }
+                    layer.closeAll();
+                }
+            });
+        }, function () {
+            return;
+        });
+    }
+
+    function editUser(userId){
+        var title = "新增用户";
+        var url = "/base-manager/user/edit'";
+        if(userId!=null){
             title = "编辑用户";
-            url = url + "?id=" + id;
+            url = url + "?id=" + userId;
         }
         layer.open({
             type: 2,
