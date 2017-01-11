@@ -156,7 +156,7 @@
             title: title,
             shadeClose: true,
             shade: 0.8,
-            area: ['800px', '630px'],
+            area: ['600px', '430px'],
             fix: false,
             maxmin: true,
             content: url
@@ -196,7 +196,7 @@
             title: title,
             shadeClose: true,
             shade: 0.8,
-            area: ['800px', '630px'],
+            area: ['600px', '430px'],
             fix: false,
             maxmin: true,
             content: url

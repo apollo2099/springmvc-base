@@ -34,7 +34,7 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-sm-3 control-label">E-mail：</label>
+      <label class="col-sm-3 control-label">昵称：</label>
       <div class="col-sm-8">
         <input id="name" name="name" class="form-control" type="text">
       </div>
@@ -58,53 +58,11 @@
   </form>
 </div>
 
-
-<%--
-<div class="ibox-content" style="width: 430px;">
-  <form id="myForm" class="form-horizontal" autocomplete="off" data-validator-option="{theme:'default'}">
-    <div class="form-group"><label class="col-sm-2 control-label">用户名</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" placeholder="请输入用户名" name="loginName" required="">
-      </div>
-    </div>
-    <div class="hr-line-dashed"></div>
-    <div class="form-group"><label class="col-sm-2 control-label">登录密码</label>
-      <div class="col-sm-10">
-        <input type="password" class="form-control" placeholder="请输入密码" name="password" required="">
-      </div>
-    </div>
-
-
-    <div class="hr-line-dashed"></div>
-    <div class="form-group"><label class="col-sm-2 control-label">昵称</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" placeholder="昵称" name="name" required="">
-      </div>
-    </div>
-
-
-    <div class="hr-line-dashed"></div>
-    <div class="form-group"><label class="col-sm-2 control-label">用户角色</label>
-      <div class="col-sm-10">
-        <select class="form-control m-b" name="rid">
-
-        </select>
-      </div>
-    </div>
-    <div class="hr-line-dashed"></div>
-    <div class="form-group">
-      <div class="text-center">
-        <button class="btn btn-primary" type="submit">提 交</button>
-      </div>
-    </div>
-  </form>
-</div>
---%>
 <!--引入js文件-->
 <jsp:include page="../../common/_script.jsp"></jsp:include>
 
 
-<script>
+<script type="text/javascript">
 
   $.validator.setDefaults({
     highlight: function(e) {

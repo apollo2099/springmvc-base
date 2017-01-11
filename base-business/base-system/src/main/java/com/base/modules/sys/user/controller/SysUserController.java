@@ -121,23 +121,18 @@ public class SysUserController extends BaseController {
      * @return
      */
     @RequestMapping(value ="/register",method =RequestMethod.POST)
+    @ResponseBody
     public String register(SysUser sysUser){
     	try {
             sysUser.setStatus(1);
             sysUser.setIp("127.0.0.1");
             sysUser.setLastLogin("");
 			Boolean isFlag = sysUserService.register(sysUser);
-			if(isFlag){
-                System.out.print("注册成功");
-                return "/login";
-            }else{
-                System.out.print("注册失败");
-                return "/register";
-            }
+			return JSONUtils.jsonToString(isFlag);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    	return "/register";
+    	return null;
     }
 
 
@@ -181,10 +176,11 @@ public class SysUserController extends BaseController {
     public String edit(SysUser sysUser){
         try {
             Boolean isFlag = sysUserService.update(sysUser);
+            return JSONUtils.jsonToString(isFlag);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/sys/user/edit";
+        return null;
     }
 
 
