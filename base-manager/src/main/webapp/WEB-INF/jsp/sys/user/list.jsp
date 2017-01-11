@@ -20,6 +20,20 @@
 <body class="gray-bg">
 <div class="wrapper wrapper-content animated fadeInRight">
     <div class="row">
+        <div class="ibox-content text-right form-inline" style="background: #F3F3F4;">
+            <div class="input-group">
+                <input type="text" class="form-control">
+			<span class="input-group-btn">
+				<button type="button" class="btn btn-info">搜索</button>
+			</span>
+            </div>
+            <button class="btn btn-primary" onclick="editUser(null)" type="button">
+                <i class="fa fa-pencil"></i>&nbsp;添加用户</button>
+        </div>
+    </div>
+
+
+    <div class="row">
         <div class="col-sm-12">
             <div class="ibox float-e-margins">
                 <div class="ibox-title">
@@ -29,16 +43,6 @@
                     </div>
                 </div>
                 <div class="ibox-content">
-                    <button type="button" class="btn btn-outline btn-default">新增</button>
-                    <p>
-
-                        <%--
-                        <button type="button" class="btn btn-outline btn-primary">修改</button>
-                        <button type="button" class="btn btn-outline btn-success">删除</button>
-                        <button type="button" class="btn btn-outline btn-info">详情</button>
-                        --%>
-                    </p>
-
                     <table class="table table-striped table-bordered table-hover dataTables-example">
                         <thead>
                         <tr>
@@ -53,20 +57,6 @@
                         </thead>
                         <tbody>
                         </tbody>
-                        
-                        <%--
-                        <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>登录账户</th>
-                            <th>密码</th>
-                            <th>昵称</th>
-                            <th>最后登录时间</th>
-                            <th>最后登录IP</th>
-                            <th>操作</th>
-                        </tr>
-                        </tfoot>
-                         --%>
                     </table>
 
                 </div>
@@ -78,6 +68,8 @@
 
 <!--引入js文件-->
 <jsp:include page="../../common/_script.jsp"></jsp:include>
+
+<!--分页插件数据-->
 <script>
     var defTable = $('.dataTables-example').dataTable(
             {
@@ -155,8 +147,8 @@
 
 
     function detailUser(userId){
-        var title = "新增用户";
-        var url = "/base-manager/user/detail?userId=" + userId;
+        var title = "用户详情";
+        var url = "/base-manager/user/detail/" + userId;
         layer.open({
             type: 2,
             title: title,
@@ -192,10 +184,10 @@
 
     function editUser(userId){
         var title = "新增用户";
-        var url = "/base-manager/user/edit'";
+        var url = "/base-manager/user/edit";
         if(userId!=null){
             title = "编辑用户";
-            url = url + "?id=" + userId;
+            url = url + "/" + userId;
         }
         layer.open({
             type: 2,

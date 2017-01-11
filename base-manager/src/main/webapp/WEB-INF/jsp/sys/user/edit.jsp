@@ -11,7 +11,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>新增用户页面</title>
+  <title>更新用户页面</title>
 
   <!--引入css文件-->
   <jsp:include page="../../common/_meta.jsp"></jsp:include>
@@ -23,7 +23,7 @@
     <input type="hidden" name="id" value="$!{user.id}">
     <div class="form-group"><label class="col-sm-2 control-label">用户名</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" value="$!{user.loginName}" name="loginName" data-rule="用户名:required;loginName">
+        <input type="text" class="form-control" value="${sysUser.loginName}" name="loginName" data-rule="用户名:required;loginName">
       </div>
     </div>
     <div class="hr-line-dashed"></div>

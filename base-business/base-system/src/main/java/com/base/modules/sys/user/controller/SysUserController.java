@@ -6,6 +6,7 @@ import com.base.modules.sys.dto.SysUser;
 import com.base.modules.sys.user.service.SysUserService;
 import com.base.utils.JSONUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -46,13 +47,7 @@ public class SysUserController extends BaseController {
         Enumeration enumeration = request.getParameterNames();
         System.out.print(JSONUtils.jsonToString(enumeration));
 
-        String sEcho = request.getParameter("sEcho");
-        String start = request.getParameter("iDisplayStart");// 起始
-        String length = request.getParameter("iDisplayLength");// 分页大小size
-        PageInfo pageInfo = new PageInfo();
-        pageInfo.setStart(Integer.parseInt(start));
-        pageInfo.setLength(Integer.parseInt(length) + Integer.parseInt(start));
-        pageInfo.setsEcho(Integer.parseInt(sEcho));
+        PageInfo pageInfo = this.getPageInfo();
         sysUser.setPageInfo(pageInfo);
         try {
             pageInfo = sysUserService.pageList(sysUser);
@@ -60,11 +55,6 @@ public class SysUserController extends BaseController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        Map<String, Object> dataMap =new HashMap<String, Object>();
-//        dataMap.put("iTotalRecords", pageInfo.getRecordsTotal());
-//        dataMap.put("sEcho",pageInfo.get);
-//        dataMap.put("iTotalDisplayRecords", userPage.getTotalRow());
-//        dataMap.put("aaData", page.getPages());
 
         return JSONUtils.jsonToString(pageInfo);
     }
@@ -150,11 +140,11 @@ public class SysUserController extends BaseController {
      * 调转到编辑用户页面
      * @return
      */
-    @RequestMapping(value ="/edit",method =RequestMethod.GET)
-    public ModelAndView edit(Integer userId){
-        SysUser sysUser = null;
+    @RequestMapping(value ="/edit/{userId}",method =RequestMethod.GET)
+    public ModelAndView edit(@PathVariable("userId")Integer userId){
+        this.getRequest().getParameter("userId");
         try {
-            sysUser = sysUserService.findUserById(userId);
+            SysUser sysUser = sysUserService.findUserById(userId);
 
             ModelAndView mv = this.getModelAndView();
             mv.addObject("sysUser", sysUser);
@@ -188,8 +178,8 @@ public class SysUserController extends BaseController {
      * 调转到用户详情页面
      * @return
      */
-    @RequestMapping(value ="/detail",method =RequestMethod.GET)
-    public ModelAndView detail(Integer userId){
+    @RequestMapping(value ="/detail/{userId}",method =RequestMethod.GET)
+    public ModelAndView detail(@PathVariable("userId")Integer userId){
         SysUser sysUser = null;
         try {
             sysUser = sysUserService.findUserById(userId);
