@@ -8,9 +8,19 @@
 <script src="/base-manager/hplus/js/plugins/pace/pace.min.js"></script>
 
 
-<script src="/base-manager/hplus/js/plugins/jeditable/jquery.jeditable.js"></script>
 <script src="/base-manager/hplus/js/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="/base-manager/hplus/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 <script src="/base-manager/hplus/js/content.min.js?v=1.0.0"></script>
 
 <script src="/base-manager/hplus/js/plugins/layer/layer.js"></script>
+<!--验证js-->
+<script src="/base-manager/hplus/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="/base-manager/hplus/js/plugins/validate/messages_zh.min.js"></script>
+<script src="/base-manager/hplus/js/demo/form-validate-demo.min.js"></script>
+
+<%--
+
+<script src="/base-manager/hplus/js/plugins/validate/jquery.validator.js"></script>
+--%>
+
+

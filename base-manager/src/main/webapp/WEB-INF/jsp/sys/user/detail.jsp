@@ -5,6 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>用户详情</title>
+  <!--引入css文件-->
+  <jsp:include page="../../common/_meta.jsp"></jsp:include>
 
 </head>
 <body class="white-bg">
@@ -75,6 +77,7 @@
 </div>
 
 
-
+<!--引入js文件-->
+<jsp:include page="../../common/_script.jsp"></jsp:include>
 </body>
 </html>

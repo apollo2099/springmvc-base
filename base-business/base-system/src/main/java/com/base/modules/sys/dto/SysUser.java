@@ -16,7 +16,7 @@ public class SysUser extends BaseEntity<SysUser> {
 
     private String ip;
 
-    private String status;
+    private Integer status;
 
     private String description;
 
@@ -68,12 +68,12 @@ public class SysUser extends BaseEntity<SysUser> {
         this.ip = ip == null ? null : ip.trim();
     }
 
-    public String getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     public String getDescription() {

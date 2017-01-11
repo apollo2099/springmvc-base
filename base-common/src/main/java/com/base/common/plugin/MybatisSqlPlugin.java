@@ -64,7 +64,7 @@ public class MybatisSqlPlugin implements Interceptor {
 			if (time > 1) {
 				String sql = getSql(configuration, boundSql, sqlId, time);
 				logger.info(sql);
-				System.out.print(sql);
+				System.err.println(sql);
 			}
 		} else {
 			returnValue = invocation.proceed();
