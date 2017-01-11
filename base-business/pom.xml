@@ -8,11 +8,17 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <packaging>pom</packaging>
-  <groupId>com.ibase</groupId>
   <artifactId>base-business</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <name>base-business</name>
-  
+
+  <dependencies>
+    <dependency>
+      <groupId>com.ibase</groupId>
+      <artifactId>base-common</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
   <modules>
   	<module>base-order</module>
   	<module>base-product</module>

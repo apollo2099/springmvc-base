@@ -107,11 +107,6 @@
 	<!-- 
 	<tx:annotation-driven transaction-manager="transactionManager" />
     -->
-    
-	<bean id="baseDAO" class="com.base.common.dao.BaseDAO">
-		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
-	</bean>
-	
 	<!-- 自动扫描组件，需要把controller去掉，否则影响事务管理 -->
     <context:component-scan base-package="com.base">
       <context:exclude-filter type="regex" expression="com.base.web.*"/>

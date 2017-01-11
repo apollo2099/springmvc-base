@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.persistence.SysRoleMapper">
+  <resultMap id="BaseResultMap" type="com.base.modules.sys.dto.SysRole">
+    <id column="role_id" jdbcType="INTEGER" property="roleId" />
+    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
+    <result column="removable" jdbcType="INTEGER" property="removable" />
+    <result column="allocatable" jdbcType="INTEGER" property="allocatable" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    role_id, role_name, removable, allocatable, description, status
+  </sql>
+
+  <select id="findByRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </select>
+
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from sys_role
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.base.modules.sys.dto.SysRole">
+    insert into sys_role (role_id, role_name, removable, 
+      allocatable, description, status
+      )
+    values (#{roleId,jdbcType=INTEGER}, #{roleName,jdbcType=VARCHAR}, #{removable,jdbcType=INTEGER}, 
+      #{allocatable,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}
+      )
+  </insert>
+
+
+  <update id="update" parameterType="com.base.modules.sys.dto.SysRole">
+    update sys_role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      removable = #{removable,jdbcType=INTEGER},
+      allocatable = #{allocatable,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where role_id = #{roleId,jdbcType=INTEGER}
+  </update>
+
+</mapper>

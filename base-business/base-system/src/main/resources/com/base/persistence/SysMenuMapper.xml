@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.base.persistence.SysMenuMapper">
+  <resultMap id="BaseResultMap" type="com.base.modules.sys.dto.SysMenu">
+    <id column="menu_id" jdbcType="INTEGER" property="menuId" />
+    <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
+    <result column="menu_url" jdbcType="VARCHAR" property="menuUrl" />
+    <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+    <result column="menu_order" jdbcType="INTEGER" property="menuOrder" />
+    <result column="menu_icon" jdbcType="VARCHAR" property="menuIcon" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    menu_id, menu_name, menu_url, parent_id, menu_order, menu_icon, description, status
+  </sql>
+
+  <select id="findById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sys_menu
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </select>
+  <delete id="delete" parameterType="java.lang.Integer">
+    delete from sys_menu
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.base.modules.sys.dto.SysMenu">
+    insert into sys_menu (menu_id, menu_name, menu_url, 
+      parent_id, menu_order, menu_icon, 
+      description, status)
+    values (#{menuId,jdbcType=INTEGER}, #{menuName,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{menuOrder,jdbcType=INTEGER}, #{menuIcon,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+  </insert>
+
+  <update id="update" parameterType="com.base.modules.sys.dto.SysMenu">
+    update sys_menu
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      parent_id = #{parentId,jdbcType=INTEGER},
+      menu_order = #{menuOrder,jdbcType=INTEGER},
+      menu_icon = #{menuIcon,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where menu_id = #{menuId,jdbcType=INTEGER}
+  </update>
+</mapper>

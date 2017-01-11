@@ -8,9 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <packaging>war</packaging>
-  <groupId>com.ibase</groupId>
   <artifactId>base-web</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
   <name>base-web</name>
   <url>http://maven.apache.org</url>
   <properties>

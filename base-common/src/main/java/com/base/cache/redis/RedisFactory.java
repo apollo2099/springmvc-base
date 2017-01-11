@@ -1,5 +1,6 @@
 package com.base.cache.redis;
 
+import com.base.cache.redis.exception.RedisServiceException;
 import redis.clients.jedis.JedisPool;
 
 /**
@@ -10,7 +11,7 @@ import redis.clients.jedis.JedisPool;
  */
 public interface RedisFactory<T> {
 
-    T getResource();
+    T getResource() throws RedisServiceException;
 
     void returnResource(T resource);
 

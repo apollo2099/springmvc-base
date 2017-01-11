@@ -2,6 +2,7 @@ package com.base.cache.redis;
 
 import java.util.concurrent.locks.ReentrantLock;
 
+import com.base.cache.redis.exception.ServiceErrorCode;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -56,7 +57,7 @@ public class DefaultJedisFactory implements RedisFactory<Jedis> {
     }
 
     @Override
-    public Jedis getResource() {
+    public Jedis getResource() throws RedisServiceException {
         if (this.pool == null) {
             lockPool.lock();
             try {
@@ -69,7 +70,7 @@ public class DefaultJedisFactory implements RedisFactory<Jedis> {
         }
 
         if (this.pool == null) {
-            //throw new RedisServiceException("Jedis not initialized.", ServiceErrorCode.REDIS_CLIENT_NOT_INITIALIZED);
+            throw new RedisServiceException("Jedis not initialized.", ServiceErrorCode.REDIS_CLIENT_NOT_INITIALIZED);
         }
 
         Jedis jedis = pool.getResource();

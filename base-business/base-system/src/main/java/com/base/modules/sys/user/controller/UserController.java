@@ -14,11 +14,16 @@ public class UserController {
     @Resource
 	private UserService  userService;
     
-	@RequestMapping("/login")
+	@RequestMapping("/toLogin")
 	public String login() {
 		String username="admin";
-		 Map map=userService.findByUsername(username);
-		 System.out.println(map.get("userName"));
+		Map map= null;
+		try {
+			map = userService.findByUsername(username);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.println(map.get("userName"));
 		return "/login";
 	}
 	
