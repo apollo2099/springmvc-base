@@ -20,7 +20,7 @@ $.validator.setDefaults({
         type:"post",
         dataType:"json",
         success: function(responseText,statusText){
-            if("1"==responseText.status)
+            if(true==responseText.status)
             {
                 $(form).clearForm();
                 if($(form).find("*[data-dismiss='modal']").length>0){
@@ -33,6 +33,7 @@ $.validator.setDefaults({
                 }else{
                 	$("#breadNav li:nth-last-child(2) > a").click();
                 }
+                layer.closeAll();
                 /*
                 BootstrapDialog.show({
 					type: BootstrapDialog.TYPE_SUCCESS,
@@ -47,11 +48,7 @@ $.validator.setDefaults({
 		        */
             }
             else{
-                BootstrapDialog.show({
-					type: BootstrapDialog.TYPE_WARNING,
-		            title: '操作结果提示',
-		            message: responseText.msg || "未知错误警告!请您反馈给系统管理员，我们会尽快解决该问题",
-		        });
+                layer.msg(responseText.msg);
             }
         },
         error:function(XmlHttpRequest, textStatus, errorThrown){

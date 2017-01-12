@@ -16,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户登录操作类
@@ -128,7 +130,11 @@ public class SysUserController extends BaseController {
             sysUser.setIp("127.0.0.1");
             sysUser.setLastLogin("");
 			Boolean isFlag = sysUserService.register(sysUser);
-			return JSONUtils.jsonToString(isFlag);
+
+            Map<String,Object> result = new HashMap<String,Object>();
+            result.put("status",isFlag);
+            result.put("msg","操作成功");
+            return JSONUtils.jsonToString(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -176,7 +182,11 @@ public class SysUserController extends BaseController {
     public String edit(SysUser sysUser){
         try {
             Boolean isFlag = sysUserService.update(sysUser);
-            return JSONUtils.jsonToString(isFlag);
+
+            Map<String,Object> result = new HashMap<String,Object>();
+            result.put("status",isFlag);
+            result.put("msg","操作成功");
+            return JSONUtils.jsonToString(result);
         } catch (Exception e) {
             e.printStackTrace();
         }
