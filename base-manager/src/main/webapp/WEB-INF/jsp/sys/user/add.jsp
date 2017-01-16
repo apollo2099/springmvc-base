@@ -122,11 +122,18 @@
                 }
               }
             }),
-                    $("#username").focus(function() {
-                      var e = $("#firstname").val(),
-                              r = $("#lastname").val();
-                      e && r && !this.value && (this.value = e + "." + r)
-                    })
+            $("#username").focus(function() {
+             var e = $("#firstname").val(), r = $("#lastname").val();
+              e && r && !this.value && (this.value = e + "." + r)
+            }),
+                    success:"valid",
+                    submitHandler:function(form){
+              $(form).ajaxSubmit();
+              var index = parent.layer.getFrameIndex(window.name);
+              parent.$('.btn-refresh').click();
+              parent.location.reload();
+              parent.layer.close(index);
+            }
           });
 
 </script>
