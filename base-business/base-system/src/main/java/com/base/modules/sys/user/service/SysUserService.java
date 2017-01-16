@@ -19,6 +19,31 @@ public class SysUserService{
     @Autowired
     private BaseDao baseDao;
 
+
+
+    /**
+     * 查询用户分页信息（dataTable）
+     * @param page
+     * @param sysUser
+     * @return
+     */
+    public PageInfo<SysUser> pageList(SysUser sysUser)throws Exception {
+        PageInfo<SysUser> page = sysUser.getPageInfo();
+        // 查询符合条件的条数
+        int totalNum = baseDao.findForObject(sqlMap+"count", sysUser);
+        // 执行分页查询
+        List<SysUser> records =baseDao.findForList(sqlMap+"list",sysUser);
+        if(ObjectUtils.isEmpty(page)){
+            page = new PageInfo<SysUser>();
+        }
+        page.setData(records);
+        page.setRecordsTotal(totalNum);
+        page.setRecordsFiltered(totalNum);
+        return page;
+    }
+
+
+
     /**
      * 用户登录
      * @param sysUser
@@ -81,7 +106,7 @@ public class SysUserService{
 
     /**
      * 根据用户ID查询用户详情
-     * @param userId
+     * @param userId 用户编号
      * @return
      * @throws Exception
      */
@@ -92,25 +117,21 @@ public class SysUserService{
 
 
     /**
-     * 查询用户分页信息（dataTable）
-     * @param page
-     * @param sysUser
+     * 更新用户状态
+     * @param sysUser 用户信息
      * @return
+     * @throws Exception
      */
-    public PageInfo<SysUser> pageList(SysUser sysUser)throws Exception {
-        PageInfo<SysUser> page = sysUser.getPageInfo();
-        // 查询符合条件的条数
-        int totalNum = baseDao.findForObject(sqlMap+"count", sysUser);
-        // 执行分页查询
-        List<SysUser> records =baseDao.findForList(sqlMap+"list",sysUser);
-        if(ObjectUtils.isEmpty(page)){
-            page = new PageInfo<SysUser>();
+    public Boolean updateStatus(SysUser sysUser) throws Exception {
+        int num = baseDao.update(sqlMap+"updateStatus", sysUser);
+        if(ObjectUtils.isNotEmpty(num)){
+            return true;
         }
-        page.setData(records);
-        page.setRecordsTotal(totalNum);
-        page.setRecordsFiltered(totalNum);
-        return page;
+        return false;
     }
+
+
+
 
 
 

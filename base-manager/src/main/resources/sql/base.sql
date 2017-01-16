@@ -3,9 +3,9 @@ SQLyog v10.2
 MySQL - 5.7.10-log : Database - base_demo
 *********************************************************************
 */
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`base_demo` /*!40100 DEFAULT CHARACTER SET utf8 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`base_mall` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
-USE `base_demo`;
+USE `base_mall`;
 
 /*Table structure for table `user` */
 
@@ -111,7 +111,7 @@ CREATE TABLE `sys_user` (
   `name` varchar(64) DEFAULT NULL COMMENT '姓名',
   `last_login` varchar(255) DEFAULT NULL COMMENT '上次登录时间',
   `ip` varchar(32) DEFAULT NULL COMMENT 'IP',
-  `status` varchar(32) DEFAULT NULL COMMENT '状态',
+  `status` SMALLINT(3) DEFAULT NULL COMMENT '状态',
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;

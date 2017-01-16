@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2016/12/28
-  Time: 15:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="page-wrapper" class="gray-bg dashbard-1">
   <div class="row border-bottom">
@@ -25,7 +18,7 @@
             <li class="m-t-xs">
               <div class="dropdown-messages-box">
                 <a href="profile.html" class="pull-left">
-                  <img alt="image" class="img-circle" src="img/a7.jpg">
+                  <img alt="image" class="img-circle" src="http://localhost:8080/base-manager/hplus/img/a7.jpg">
                 </a>
                 <div class="media-body">
                   <small class="pull-right">46小时前</small>
@@ -39,7 +32,7 @@
             <li>
               <div class="dropdown-messages-box">
                 <a href="profile.html" class="pull-left">
-                  <img alt="image" class="img-circle" src="img/a4.jpg">
+                  <img alt="image" class="img-circle" src="http://localhost:8080/base-manager/hplus/img/a4.jpg">
                 </a>
                 <div class="media-body ">
                   <small class="pull-right text-navy">25小时前</small>
@@ -130,7 +123,7 @@
     <a href="login.html" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
   </div>
   <div class="row J_mainContent" id="content-main">
-    <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_v1.html?v=4.0" frameborder="0" data-id="index_v1.html" seamless></iframe>
+    <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="index_welcome.jsp" frameborder="0" data-id="index_welcome.jsp" seamless></iframe>
   </div>
   <div class="footer">
     <div class="pull-right">&copy; 2014-2015 <a href="http://www.zi-han.net/" target="_blank">zihan's blog</a>

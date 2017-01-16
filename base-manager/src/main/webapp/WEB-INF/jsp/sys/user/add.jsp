@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2017/1/11
-  Time: 11:13
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -18,32 +11,48 @@
 
 </head>
 <body class="white-bg">
-<div class="ibox-content" style="width: 430px;">
-  <form id="myForm" class="form-horizontal" autocomplete="off" data-validator-option="{theme:'default'}">
-    <input type="hidden" name="id" value="$!{user.id}">
-    <div class="form-group"><label class="col-sm-2 control-label">用户名</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" value="$!{user.loginName}" name="loginName" data-rule="用户名:required;loginName">
-      </div>
-    </div>
-    <div class="hr-line-dashed"></div>
-    <div class="form-group"><label class="col-sm-2 control-label">登录密码</label>
-      <div class="col-sm-10">
-        <input type="text" class="form-control" name="password" data-rule="登录密码:required;password">
-      </div>
-    </div>
-    <div class="hr-line-dashed"></div>
-    <div class="form-group"><label class="col-sm-2 control-label">用户角色</label>
-      <div class="col-sm-10">
-        <select class="form-control m-b" name="rid">
 
-        </select>
+<div class="ibox-content">
+  <form class="form-horizontal m-t" id="signupForm2" action="/base-manager/user/register" method="post">
+    <div class="form-group">
+      <label class="col-sm-3 control-label">用户名：</label>
+      <div class="col-sm-8">
+        <input id="loginName" name="loginName" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
       </div>
     </div>
-    <div class="hr-line-dashed"></div>
     <div class="form-group">
-      <div class="text-center">
-        <button class="btn btn-primary" type="submit">提 交</button>
+      <label class="col-sm-3 control-label">密码：</label>
+      <div class="col-sm-8">
+        <input id="password" name="password" class="form-control" type="password">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">确认密码：</label>
+      <div class="col-sm-8">
+        <input id="confirm_password" name="confirm_password" class="form-control" type="password">
+        <span class="help-block m-b-none"><i class="fa fa-info-circle"></i> 请再次输入您的密码</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-3 control-label">昵称：</label>
+      <div class="col-sm-8">
+        <input id="name" name="name" class="form-control" type="text">
+      </div>
+    </div>
+
+
+    <div class="form-group">
+      <div class="col-sm-8 col-sm-offset-3">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" class="checkbox" id="agree" name="agree"> 我已经认真阅读并同意《H+使用协议》
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-8 col-sm-offset-3">
+        <button class="btn btn-primary" type="submit">提交</button>
       </div>
     </div>
   </form>
@@ -54,27 +63,81 @@
 
 
 <script type="text/javascript">
-  $("#myForm").validator({
-    valid: function(form){
-      var me = this;
-      // 提交表单之前，hold住表单，防止重复提交
-      me.holdSubmit();
-      $.ajax({
-        url: "#springUrl('/perm/user/editUser')",
-        data: $(form).serialize(),
-        type: "POST",
-        success: function(data){
-          var d = JSON.parse(data);
-          if(d.success && d.data){
-            window.parent.location.reload();
-          } else {
-            me.holdSubmit(false);
-          }
-        }
-      });
-    }
-  });
+
+  $.validator.setDefaults({
+    highlight: function(e) {
+      $(e).closest(".form-group").removeClass("has-success").addClass("has-error")
+    },
+    success: function(e) {
+      e.closest(".form-group").removeClass("has-error").addClass("has-success")
+    },
+    errorElement: "span",
+    errorPlacement: function(e, r) {
+      e.appendTo(r.is(":radio") || r.is(":checkbox") ? r.parent().parent().parent() : r.parent())
+    },
+    errorClass: "help-block m-b-none",
+    validClass: "help-block m-b-none"
+  }),
+          $().ready(function() {
+            $("#commentForm").validate();
+            var e = "<i class='fa fa-times-circle'></i> ";
+            $("#signupForm2").validate({
+              rules: {
+                loginName: {
+                  required: !0,
+                  minlength: 2
+                },
+                password: {
+                  required: !0,
+                  minlength: 5
+                },
+                confirm_password: {
+                  required: !0,
+                  minlength: 5,
+                  equalTo: "#password"
+                },
+                name: {
+                  required: !0,
+                  minlength: 2
+                },
+                agree: "required"
+              },
+              messages: {
+                loginName: {
+                  required: e + "请输入您的用户名",
+                  minlength: e + "用户名必须两个字符以上"
+                },
+                password: {
+                  required: e + "请输入您的密码",
+                  minlength: e + "密码必须5个字符以上"
+                },
+                confirm_password: {
+                  required: e + "请再次输入密码",
+                  minlength: e + "密码必须5个字符以上",
+                  equalTo: e + "两次输入的密码不一致"
+                },
+                agree: {
+                  required: e + "必须同意协议后才能注册",
+                  element: "#agree-error"
+                }
+              }
+            }),
+            $("#username").focus(function() {
+             var e = $("#firstname").val(), r = $("#lastname").val();
+              e && r && !this.value && (this.value = e + "." + r)
+            }),
+                    success:"valid",
+                    submitHandler:function(form){
+              $(form).ajaxSubmit();
+              var index = parent.layer.getFrameIndex(window.name);
+              parent.$('.btn-refresh').click();
+              parent.location.reload();
+              parent.layer.close(index);
+            }
+          });
+
 </script>
+
 </body>
 </html>
 

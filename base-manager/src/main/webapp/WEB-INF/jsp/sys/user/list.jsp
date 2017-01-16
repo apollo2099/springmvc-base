@@ -27,7 +27,7 @@
 				<button type="button" class="btn btn-info">搜索</button>
 			</span>
             </div>
-            <button class="btn btn-primary" onclick="editUser(null)" type="button">
+            <button class="btn btn-primary" onclick="addUser()" type="button">
                 <i class="fa fa-pencil"></i>&nbsp;添加用户</button>
         </div>
     </div>
@@ -148,7 +148,9 @@
 
     function detailUser(userId){
         var title = "用户详情";
+        layer.msg(title);
         var url = "/base-manager/user/detail/" + userId;
+        layer.msg(url);
         layer.open({
             type: 2,
             title: title,
@@ -189,6 +191,22 @@
             title = "编辑用户";
             url = url + "/" + userId;
         }
+        layer.open({
+            type: 2,
+            title: title,
+            shadeClose: true,
+            shade: 0.8,
+            area: ['600px', '430px'],
+            fix: false,
+            maxmin: true,
+            content: url
+        });
+    }
+
+
+    function addUser(){
+        var title = "新增用户";
+        var url = "/base-manager/user/add";
         layer.open({
             type: 2,
             title: title,

@@ -5,6 +5,7 @@ import com.base.controller.BaseController;
 import com.base.modules.sys.dto.SysUser;
 import com.base.modules.sys.user.service.SysUserService;
 import com.base.utils.JSONUtils;
+import com.base.utils.ObjectUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户登录操作类
@@ -45,7 +48,7 @@ public class SysUserController extends BaseController {
     @ResponseBody
     public String pageList(SysUser sysUser,HttpServletRequest request){
         Enumeration enumeration = request.getParameterNames();
-        System.out.print(JSONUtils.jsonToString(enumeration));
+        System.out.println(JSONUtils.jsonToString(enumeration));
 
         PageInfo pageInfo = this.getPageInfo();
         sysUser.setPageInfo(pageInfo);
@@ -109,6 +112,10 @@ public class SysUserController extends BaseController {
     	System.out.print("跳转注册成功");
     	 return "/register";
     }
+
+
+
+
     
     /**
      * 管理用户注册
@@ -116,25 +123,33 @@ public class SysUserController extends BaseController {
      * @return
      */
     @RequestMapping(value ="/register",method =RequestMethod.POST)
+    @ResponseBody
     public String register(SysUser sysUser){
     	try {
-            sysUser.setStatus("1");
+            sysUser.setStatus(1);
             sysUser.setIp("127.0.0.1");
             sysUser.setLastLogin("");
 			Boolean isFlag = sysUserService.register(sysUser);
-			if(isFlag){
-                System.out.print("注册成功");
-                return "/login";
-            }else{
-                System.out.print("注册失败");
-                return "/register";
-            }
+
+            Map<String,Object> result = new HashMap<String,Object>();
+            result.put("status",isFlag);
+            result.put("msg","操作成功");
+            return JSONUtils.jsonToString(result);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    	return "/register";
+    	return null;
     }
 
+
+    /**
+     * 跳转到新增用户页面
+     * @return
+     */
+    @RequestMapping(value ="/add",method =RequestMethod.GET)
+    public String add(){
+        return "/sys/user/add";
+    }
 
     /**
      * 调转到编辑用户页面
@@ -167,10 +182,15 @@ public class SysUserController extends BaseController {
     public String edit(SysUser sysUser){
         try {
             Boolean isFlag = sysUserService.update(sysUser);
+
+            Map<String,Object> result = new HashMap<String,Object>();
+            result.put("status",isFlag);
+            result.put("msg","操作成功");
+            return JSONUtils.jsonToString(result);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "/sys/user/edit";
+        return null;
     }
 
 
@@ -180,9 +200,8 @@ public class SysUserController extends BaseController {
      */
     @RequestMapping(value ="/detail/{userId}",method =RequestMethod.GET)
     public ModelAndView detail(@PathVariable("userId")Integer userId){
-        SysUser sysUser = null;
         try {
-            sysUser = sysUserService.findUserById(userId);
+            SysUser sysUser = sysUserService.findUserById(userId);
 
             ModelAndView mv = this.getModelAndView();
             mv.addObject("sysUser", sysUser);
@@ -194,6 +213,28 @@ public class SysUserController extends BaseController {
         return null;
     }
 
+
+    /**
+     * 删除用户信息
+     * @return
+     */
+    @RequestMapping(value ="/delete/{userId}",method =RequestMethod.POST)
+    @ResponseBody
+    public String delete(@PathVariable("userId")Integer userId){
+        try {
+            Boolean isFlag = false;
+            SysUser sysUser = sysUserService.findUserById(userId);
+            if(ObjectUtils.isNotEmpty(sysUser)){
+                sysUser.setStatus(-1);
+                isFlag = sysUserService.updateStatus(sysUser);
+            }
+
+            return JSONUtils.jsonToString(isFlag);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 }
